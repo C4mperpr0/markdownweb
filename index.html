@@ -1,1 +1,54 @@
- 
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="main.css">
+    </head>
+    <body>
+        <div id="main" contenteditable="true">
+            <div id="test">123</div>
+            <div id="cum" contenteditable="false">DONT EDIT</div>
+            <div id="cunt">ABC</div>
+        </div>
+        <textarea id="w3review" name="w3review" rows="4" cols="2">
+        </textarea>
+    </body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script>
+        var $focused = $(':focus');
+        
+        function getCaretPosition(editableDiv) {
+        var caretPos = 0,
+            sel, range;
+        if (window.getSelection) {
+            sel = window.getSelection();
+            if (sel.rangeCount) {
+                range = sel.getRangeAt(0);
+                if (range.commonAncestorContainer.parentNode == editableDiv) {
+                    caretPos = range.endOffset;
+                }
+            }
+        } else if (document.selection && document.selection.createRange) {
+            range = document.selection.createRange();
+            if (range.parentElement() == editableDiv) {
+                var tempEl = document.createElement("span");
+                editableDiv.insertBefore(tempEl, editableDiv.firstChild);
+                var tempRange = range.duplicate();
+                tempRange.moveToElementText(tempEl);
+                tempRange.setEndPoint("EndToEnd", range);
+                caretPos = tempRange.text.length;
+            }
+        }
+        return caretPos;
+        }
+        
+        $(document).ready(function(){
+            
+            $("#main").keypress(function(){
+                console.log($(':focus').attr('id'));
+                console.log(getCaretPosition(document.getElementById("main")));
+                console.log(document.activeElement);
+            });
+        });
+        
+    </script>
+</html>

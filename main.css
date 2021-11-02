@@ -1,1 +1,28 @@
- 
+body {
+    background-color: #BBBBBB;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} 
+
+#main {
+    width: 60%;
+    height: 80%;
+    background-color: #EEEEEE;
+    display: flex;
+    flex-direction: column;
+}
+
+#test {
+    background-color: #FFFFDD;
+}
+
+#cum {
+    background-color: #FFDDFF;
+    user-select: none;
+}
+
+#cunt {
+    background-color: #DDFFFF;
+}
